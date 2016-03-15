@@ -1,3 +1,4 @@
+console.log("Initialising app...");
 
 /**
  * Module dependencies
@@ -11,7 +12,9 @@ var express = require('express'),
   routes = require('./routes'),
   api = require('./routes/api'),
   http = require('http'),
-  path = require('path');
+  path = require('path'),
+  ip = require("ip");
+
 
 var app = module.exports = express();
 
@@ -60,7 +63,8 @@ app.get('*', routes.index);
 /**
  * Start Server
  */
+console.log("Starting server...");
 
-http.createServer(app).listen(app.get('port'), function () {
+http.createServer(app).listen(app.get('port'), ip.address(), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
